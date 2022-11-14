@@ -1,0 +1,558 @@
+/*
+Yingshi Liu
+Assginment 06 Output File
+9 Nov, 2022
+*/
+
+/*******************************************************************************************************************************************************************************
+Question 1 :
+Display the employee ID, employee status, and last name of all employees. The last name should
+appear in uppercase letters.
+*******************************************************************************************************************************************************************************/
+SELECT 
+	e.emp_id,
+	IF(e.end_date is NULL, "ACTIVE", "INACTIVE") AS emp_status,
+    	UPPER(e.last_name) AS last_name_upper
+FROM employee e;
+
++-----------+------------+-----------------+
+| emp_id    | emp_status | last_name_upper |
++-----------+------------+-----------------+
+| 122212562 | ACTIVE     | BARKER          |
+| 184167702 | ACTIVE     | FLEMING         |
+| 184167713 | ACTIVE     | KEVIN           |
+| 190538847 | ACTIVE     | TYLER           |
+| 214487586 | ACTIVE     | KOSKITALO       |
+| 214567554 | ACTIVE     | WEBB            |
+| 215201502 | ACTIVE     | TUCKER          |
+| 215201514 | ACTIVE     | WARD            |
+| 216123586 | ACTIVE     | KLINE           |
+| 216123777 | ACTIVE     | HERBERT         |
+| 216313332 | ACTIVE     | SANCHEZ         |
+| 216315586 | ACTIVE     | HALL            |
+| 216317321 | ACTIVE     | BENITEZ         |
+| 216317324 | ACTIVE     | GATES           |
+| 216317432 | ACTIVE     | ELLIS           |
+| 216317552 | ACTIVE     | ROEL            |
+| 216317554 | ACTIVE     | SIMPSON         |
+| 216317555 | ACTIVE     | ROEL            |
+| 216317586 | ACTIVE     | HAWTHORNE       |
+| 216317598 | ACTIVE     | MARTIN          |
+| 216317655 | ACTIVE     | ROVELLI         |
+| 216317777 | ACTIVE     | HARDY           |
+| 216317786 | ACTIVE     | ANDERS          |
+| 216317878 | ACTIVE     | COUCH           |
+| 216317996 | ACTIVE     | CLARKE          |
+| 216317997 | ACTIVE     | CROWTHER        |
+| 216318876 | ACTIVE     | MURPHY          |
+| 216328754 | ACTIVE     | TONINI          |
+| 216344586 | ACTIVE     | AMIN            |
+| 216354555 | ACTIVE     | RASMUSSEN       |
+| 216388554 | ACTIVE     | SIMPSON         |
+| 216388855 | ACTIVE     | STEVENSON       |
+| 216444554 | ACTIVE     | FISCHER         |
+| 216456555 | ACTIVE     | ANDERSEN        |
+| 216777554 | ACTIVE     | MONAGHAN        |
+| 218803412 | ACTIVE     | SMITH           |
+| 218887777 | ACTIVE     | KARTTUNEN       |
+| 220826781 | ACTIVE     | JONES           |
+| 220826782 | ACTIVE     | PARKER          |
+| 225748882 | ACTIVE     | PETER           |
+| 227948102 | ACTIVE     | GROSSMAN        |
+| 227948103 | ACTIVE     | BLAKE           |
+| 227948882 | ACTIVE     | ABEL            |
+| 227967930 | ACTIVE     | ROBERTS         |
+| 230034070 | ACTIVE     | ZIEGLER         |
+| 231230948 | ACTIVE     | CANNON          |
+| 231232223 | ACTIVE     | ROONEY          |
+| 231235101 | ACTIVE     | DOUGHERTY       |
+| 231934675 | ACTIVE     | JAMESON         |
+| 232224456 | ACTIVE     | WRIGHTN         |
+| 233247642 | ACTIVE     | WILSON          |
+| 233345101 | ACTIVE     | IBSEN           |
+| 233454456 | ACTIVE     | WELLS           |
+| 233755101 | ACTIVE     | BERGLUND        |
+| 233755222 | ACTIVE     | BERGLUND        |
+| 233755991 | ACTIVE     | FULLER          |
+| 234522356 | ACTIVE     | STEEL           |
+| 234562223 | ACTIVE     | MORENOL         |
+| 234562356 | ACTIVE     | BROWN           |
+| 234562993 | ACTIVE     | IRVING          |
+| 234564322 | ACTIVE     | SHELTON         |
+| 234564454 | ACTIVE     | SPENCE          |
+| 234564456 | ACTIVE     | BROWN           |
+| 234564543 | ACTIVE     | TALLEY          |
+| 234999456 | ACTIVE     | KELLY           |
+| 235527642 | ACTIVE     | ABBOTT          |
+| 235580948 | ACTIVE     | ESCOBAR         |
+| 236123642 | ACTIVE     | FRANKS          |
+| 236345804 | ACTIVE     | RAMSEY          |
+| 236345948 | ACTIVE     | AHMED           |
+| 236456804 | ACTIVE     | MAY             |
+| 236666804 | ACTIVE     | MULLEN          |
+| 236670948 | ACTIVE     | LIMEIRA         |
+| 236780948 | ACTIVE     | MOOS            |
+| 236799948 | ACTIVE     | COBB            |
+| 236912342 | ACTIVE     | SHAW            |
+| 236927642 | ACTIVE     | ASHWORTHN       |
+| 236956114 | ACTIVE     | FRANKEN         |
+| 236956332 | ACTIVE     | MAYS            |
+| 236956432 | ACTIVE     | PAINE           |
+| 236956804 | ACTIVE     | FRANKEN         |
+| 236959804 | ACTIVE     | FRANKEN         |
+| 236999642 | ACTIVE     | CRUZ            |
+| 238226737 | ACTIVE     | BATES           |
+| 238234737 | ACTIVE     | WHITMORE        |
+| 238267332 | ACTIVE     | SMART           |
+| 238267432 | ACTIVE     | BENNETT         |
+| 238267721 | ACTIVE     | FSCHMITT        |
+| 238267737 | ACTIVE     | FSCHMITT        |
+| 238269087 | ACTIVE     | DEWEY           |
+| 238345737 | ACTIVE     | HEAD            |
+| 238892223 | ACTIVE     | PARENTE         |
+| 239877844 | ACTIVE     | RAHMAN          |
+| 239911144 | ACTIVE     | SANCHEZ         |
+| 239961224 | ACTIVE     | FORD            |
+| 239961532 | ACTIVE     | PENN            |
+| 239961844 | ACTIVE     | LATIMER         |
+| 239961855 | ACTIVE     | LATIMER         |
+| 239969084 | ACTIVE     | CRAMER          |
+| 239978944 | ACTIVE     | OLIVER          |
+| 244755112 | ACTIVE     | REID            |
+| 276562223 | ACTIVE     | BATTLE          |
+| 538682222 | ACTIVE     | GOODING         |
+| 538682223 | ACTIVE     | SMITH           |
++-----------+------------+-----------------+
+
+/*******************************************************************************************************************************************************************************
+Question 2: 
+Display all employees in each department and the names of departments with more than five
+employees.
+*******************************************************************************************************************************************************************************/# dept_name, num_employees
+SELECT 
+	dept.dept_name,
+	count(*) AS num_employees
+FROM employee emp
+JOIN department dept
+USING (dept_id)
+GROUP BY dept.dept_name
+HAVING count(*) > 5;
+
++--------------------+---------------+
+| dept_name          | num_employees |
++--------------------+---------------+
+| Administration     |            32 |
+| General Operations |            68 |
++--------------------+---------------+
+2 rows in set (0.00 sec)
+
+/*******************************************************************************************************************************************************************************
+Question 3: 
+Display the client data order by the last three digits of the client’s federal ID number (which is either a Social Security Number for individual clients or a federal ID for business clients). Display client ID, client type ID, city, state, and federal ID columns.
+********************************************************************************************************************************************************************************/
+SELECT 
+	client.client_id,
+	client.client_type_id,
+        loc.city,
+        loc.state,
+        client.fed_id
+FROM clients client
+JOIN location loc
+ON (client.loc_id = loc.location_id)
+ORDER BY RIGHT(client.fed_id, 3);
+
++-----------+----------------+---------------------+-------+-------------+
+| client_id | client_type_id | city                | state | fed_id      |
++-----------+----------------+---------------------+-------+-------------+
+|      1562 | B              | San Francisco       | CA    | 04-1111111  |
+|      1888 | I              | San Francisco       | CA    | 111-11-1111 |
+|      8182 | B              | San Francisco       | CA    | 02-1111111  |
+|      2469 | I              | West Chicago        | IL    | 111-55-2222 |
+|      6043 | I              | Detroit             | MI    | 444-44-2222 |
+|      2343 | I              | San Francisco       | CA    | 222-22-2222 |
+|      2563 | B              | San Francisco       | CA    | 04-2222222  |
+|      8289 | B              | San Francisco       | CA    | 02-2222222  |
+|      4696 | I              | San Francisco       | CA    | 111-11-2222 |
+|      6539 | I              | South San Francisco | CA    | 777-77-3333 |
+|      7855 | I              | San Francisco       | CA    | 222-22-3333 |
+|      3564 | B              | San Francisco       | CA    | 04-3333333  |
+|      3344 | I              | West Chicago        | IL    | 333-33-3333 |
+|      1635 | B              | San Francisco       | CA    | 02-3333333  |
+|      4345 | I              | Detroit             | MI    | 444-44-4444 |
+|      4565 | B              | Boston              | MA    | 04-4444444  |
+|      5615 | B              | Boston              | MA    | 02-4444444  |
+|      9372 | I              | Sacramento          | CA    | 999-99-4444 |
+|      5346 | I              | San Francisco       | CA    | 555-55-5555 |
+|      8789 | I              | San Francisco       | CA    | 888-88-5555 |
+|      1514 | I              | Boston              | MA    | 222-66-5555 |
+|      3221 | B              | Sacramento          | CA    | 03-5555555  |
+|      3562 | B              | Sacramento          | CA    | 05-5555555  |
+|      1346 | I              | West Chicago        | IL    | 111-55-5555 |
+|      1651 | I              | San Francisco       | CA    | 555-55-6666 |
+|      2347 | I              | Boston              | MA    | 222-66-6666 |
+|      6347 | I              | San Francisco       | CA    | 666-66-6666 |
+|      3563 | B              | Chicago             | IL    | 05-6666666  |
+|      4797 | I              | Chicago             | IL    | 333-77-6666 |
+|      5274 | B              | Chicago             | IL    | 03-6666666  |
+|      6387 | I              | San Francisco       | CA    | 666-66-7777 |
+|      7348 | I              | South San Francisco | CA    | 777-77-7777 |
+|      2703 | B              | Chicago             | IL    | 03-7777777  |
+|      3348 | I              | Chicago             | IL    | 333-77-7777 |
+|      3566 | B              | Chicago             | IL    | 05-7777777  |
+|      7612 | I              | Chicago             | IL    | 222-88-7777 |
+|      8778 | I              | Chicago             | IL    | 222-99-8888 |
+|      4349 | I              | Chicago             | IL    | 222-88-8888 |
+|      3567 | B              | West Chicago        | IL    | 05-8888888  |
+|      2630 | B              | West Chicago        | IL    | 03-8888888  |
+|      8349 | I              | San Francisco       | CA    | 888-88-8888 |
+|     53411 | I              | Chicago             | IL    | 222-99-9999 |
+|      3231 | I              | West Chicago        | IL    | 333-33-9999 |
+|     93411 | I              | Sacramento          | CA    | 999-99-9999 |
++-----------+----------------+---------------------+-------+-------------+
+
+/*******************************************************************************************************************************************************************************
+Question 4: 
+Display the total available balance by account type and branch where there is more than one account per type and branch. Order the results by total balance (highest to lowest).
+********************************************************************************************************************************************************************************/
+SELECT
+	type_id,
+	branch_id,
+	sum(avail_balance) AS "total balance"
+FROM accounts
+GROUP BY type_id, branch_id
+HAVING count(account_id) > 1
+ORDER BY sum(avail_balance) DESC;
+
++---------+-----------+---------------+
+| type_id | branch_id | total balance |
++---------+-----------+---------------+
+| CHK     |      1515 |     110885.19 |
+| SAV     |      1111 |      23100.00 |
+| CHK     |      1717 |      14094.46 |
+| SAV     |      8881 |      12000.00 |
+| BUS     |      1515 |       9345.55 |
+| CHK     |      1414 |       9025.67 |
+| CHK     |      1313 |       8987.19 |
++---------+-----------+---------------+
+7 rows in set (0.00 sec)
+
+/*******************************************************************************************************************************************************************************
+Question 5: 
+Display a narrative string for each bank teller employee.
+********************************************************************************************************************************************************************************/
+SELECT CONCAT(e.first_name, " ", e.last_name, " has been a ", job.job_id, " since ", e.start_date) AS emp_narrative
+FROM employee e
+JOIN jobs job
+USING (job_id)
+WHERE job.job_title LIKE "%Teller%";
+
++-------------------------------------------------------+
+| emp_narrative                                         |
++-------------------------------------------------------+
+| Chris Tucker has been a CU_TEL since 2011-09-15       |
+| Cynthia Ward has been a CU_TEL since 2011-09-15       |
+| Terry Jones has been a CU_TEL since 2011-11-03        |
+| Sarah Parker has been a CU_TEL since 2011-12-02       |
+| Jane Grossman has been a CU_TEL since 2012-05-03      |
+| Marion Blake has been a CU_TEL since 2011-05-03       |
+| Thomas Ziegler has been a CU_TEL since 2013-10-23     |
+| Shelly  Cannon has been a CU_TEL since 2012-08-10     |
+| Samantha Jameson has been a CU_TEL since 2013-01-08   |
+| Paula Wilson has been a CU_TEL since 2011-08-05       |
+| Korey Abbott has been a CU_TEL since 2013-05-05       |
+| Vladimir Escobar has been a CU_TEL since 2013-08-10   |
+| Joel Franks has been a CU_TEL since 2011-04-05        |
+| Hanna Ahmed has been a CU_TEL since 2010-08-11        |
+| Janete  Limeira has been a CU_TEL since 2011-09-10    |
+| Hanna Moos has been a CU_TEL since 2012-08-10         |
+| Yousaf  Cobb has been a CU_TEL since 2010-08-10       |
+| Berti Shaw has been a CU_TEL since 2011-04-05         |
+| Victoria Ashworthn has been a CU_TEL since 2011-04-05 |
+| Kya Cruz has been a CU_TEL since 2010-04-05           |
+| Terry Bates has been a CU_TEL since 2011-06-29        |
+| Umer Whitmore has been a CU_TEL since 2011-11-29      |
+| Kai Smart has been a CU_TEL since 2011-06-20          |
+| Zayne Bennett has been a CU_TEL since 2012-04-29      |
+| Carine FSchmitt has been a CU_TEL since 2010-06-29    |
+| Carine FSchmitt has been a CU_TEL since 2011-06-29    |
+| Catherine Dewey has been a CU_TEL since 2010-06-29    |
+| Aamir Head has been a CU_TEL since 2011-04-29         |
+| Wesley Rahman has been a CU_TEL since 2011-11-12      |
+| Georgie Sanchez has been a CU_TEL since 2011-10-12    |
+| Sonny Ford has been a CU_TEL since 2011-11-10         |
+| Robert Penn has been a CU_TEL since 2013-10-12        |
+| Yoshi Latimer has been a CU_TEL since 2012-11-12      |
+| Yoshi Latimer has been a CU_TEL since 2010-11-12      |
+| Patricia  Cramer has been a CU_TEL since 1999-11-12   |
+| Toby Oliver has been a CU_TEL since 2011-10-12        |
+| Helen Fleming has been a HD_TEL since 2011-03-17      |
+| Allen Kevin has been a HD_TEL since 2011-05-17        |
+| Tommie Dougherty has been a HD_TEL since 2011-05-11   |
+| Angel Ibsen has been a HD_TEL since 2013-05-11        |
+| Christina Berglund has been a HD_TEL since 2011-05-11 |
+| Alexie Berglund has been a HD_TEL since 2012-06-11    |
+| Zackary Fuller has been a HD_TEL since 1999-05-11     |
+| Jed Ramsey has been a HD_TEL since 2010-05-15         |
+| Clay  May has been a HD_TEL since 2011-05-15          |
+| Jadon Mullen has been a HD_TEL since 2011-09-15       |
+| Peter Franken has been a HD_TEL since 2011-05-15      |
+| Zain  Mays has been a HD_TEL since 2011-05-15         |
+| Oliver Paine has been a HD_TEL since 2011-03-15       |
+| Peter Franken has been a HD_TEL since 2011-05-15      |
+| iovanni Franken has been a HD_TEL since 2010-05-15    |
+| Eilish Reid has been a HD_TEL since 2013-09-11        |
++-------------------------------------------------------+
+52 rows in set (0.00 sec)
+
+/*******************************************************************************************************************************************************************************
+Question 6: 
+You are in charge of operations at the bank, and you would like to find out how many accounts are
+being opened by each bank teller employee. Display any cases where an employee has opened fewer than five
+accounts. Display open employee ID and how many accounts each teller employee has opened.
+********************************************************************************************************************************************************************************/
+SELECT 
+	open_emp_id,
+    	count(account_id) AS how_many
+FROM accounts
+GROUP BY open_emp_id
+HAVING count(account_id) < 5;
+
++-------------+----------+
+| open_emp_id | how_many |
++-------------+----------+
+|   184167702 |        1 |
+|   184167713 |        1 |
+|   215201502 |        1 |
+|   227948102 |        2 |
+|   231230948 |        2 |
+|   233247642 |        1 |
+|   233755101 |        1 |
+|   233755991 |        1 |
+|   234999456 |        1 |
+|   236123642 |        1 |
+|   236345948 |        2 |
+|   236670948 |        1 |
+|   236799948 |        1 |
+|   236912342 |        1 |
+|   236959804 |        1 |
+|   238226737 |        1 |
+|   238234737 |        2 |
+|   238267332 |        4 |
+|   238267721 |        1 |
+|   239877844 |        1 |
+|   239911144 |        1 |
+|   239961224 |        2 |
+|   239961844 |        1 |
+|   239978944 |        4 |
++-------------+----------+
+24 rows in set (0.00 sec)
+
+/*******************************************************************************************************************************************************************************
+Question 7: 
+Display the type ID column along with five aggregate functions.
+********************************************************************************************************************************************************************************/
+SELECT
+	type_id,
+    	MAX(avail_balance) AS max_balance,
+    	MIN(avail_balance) AS min_balance,
+    	AVG(avail_balance) AS avg_balance,
+    	sum(avail_balance) AS total_balance,
+    	count(account_id) AS num_accts
+FROM accounts
+GROUP BY type_id;
+
++---------+-------------+-------------+--------------+---------------+-----------+
+| type_id | max_balance | min_balance | avg_balance  | total_balance | num_accts |
++---------+-------------+-------------+--------------+---------------+-----------+
+| BUS     |     9345.55 |        0.00 |  4672.775000 |       9345.55 |         2 |
+| CD      |    10000.00 |     1500.00 |  4200.000000 |      21000.00 |         5 |
+| CHK     |    45000.00 |      122.37 |  9210.376875 |     147366.03 |        16 |
+| MM      |     9345.55 |     2212.50 |  5779.025000 |      11558.05 |         2 |
+| SAV     |    18000.00 |      387.99 |  4138.502727 |      45523.53 |        11 |
+| SBL     |    50000.00 |    50000.00 | 50000.000000 |     200000.00 |         4 |
++---------+-------------+-------------+--------------+---------------+-----------+
+6 rows in set (0.00 sec)
+
+/*******************************************************************************************************************************************************************************
+Question 8: 
+Display the total balances not only for each account, but for both types and branches (e.g., What is the total balance for all checking accounts opened at the San Francisco branch?). Filter out any type with a total available balance greater than $10,000.
+********************************************************************************************************************************************************************************/
+SELECT
+	type_id,
+    	branch_id,
+    	sum(avail_balance) AS tot_balance
+FROM accounts
+GROUP BY type_id, branch_id
+HAVING sum(avail_balance) > 10000;
+
++---------+-----------+-------------+
+| type_id | branch_id | tot_balance |
++---------+-----------+-------------+
+| SAV     |      1111 |    23100.00 |
+| SAV     |      8881 |    12000.00 |
+| SBL     |      6661 |    50000.00 |
+| SBL     |      1111 |    50000.00 |
+| SBL     |      1616 |    50000.00 |
+| CHK     |      1717 |    14094.46 |
+| CHK     |      1515 |   110885.19 |
+| SBL     |      1515 |    50000.00 |
++---------+-----------+-------------+
+8 rows in set (0.00 sec)
+
+/*******************************************************************************************************************************************************************************
+Question 9: 
+Display the total deposit balances for each client. Display the client ID, category ID, and the current
+balance columns.
+********************************************************************************************************************************************************************************/
+SELECT
+	acct.client_id,
+    	acct_type.category_id,
+    	sum(acct.avail_balance) AS cust_balance
+FROM accounts acct
+JOIN account_type acct_type
+ON acct.type_id = acct_type.type_id
+GROUP BY acct.client_id, acct_type.category_id;
+
++-----------+-------------+--------------+
+| client_id | category_id | cust_balance |
++-----------+-------------+--------------+
+|      1651 | Account     |      6600.00 |
+|      2343 | Account     |      1500.00 |
+|      1514 | Account     |      3000.00 |
+|     93411 | Account     |     21734.12 |
+|      3348 | Account     |      5000.00 |
+|      4349 | Account     |     28387.19 |
+|      4345 | Account     |      1557.75 |
+|      2347 | Account     |      8758.02 |
+|      6539 | Account     |      1057.75 |
+|      9372 | Account     |      3128.11 |
+|      7612 | Account     |       125.67 |
+|      1346 | Account     |     38552.05 |
+|      2469 | Account     |      2258.02 |
+|      3344 | Account     |     23575.12 |
+|      3567 | Account     |     46500.00 |
+|      7348 | Account     |      2212.50 |
+|      8778 | Account     |     10845.55 |
+|      6347 | Account     |     18000.00 |
+|      1888 | Account     |      1500.00 |
+|      4797 | Account     |       387.99 |
+|      3231 | Account     |       767.77 |
++-----------+-------------+--------------+
+21 rows in set (0.00 sec)
+
+/*******************************************************************************************************************************************************************************
+Question 10: 
+Display type ID, branch ID, open employee ID, and the total deposits of all accounts.
+********************************************************************************************************************************************************************************/
+SELECT
+	type_id,
+    	branch_id,
+    	open_emp_id AS emp_id,
+    	sum(avail_balance) AS tot_deposits
+FROM accounts
+GROUP BY type_id, branch_id, open_emp_id;
+
++---------+-----------+-----------+--------------+
+| type_id | branch_id | emp_id    | tot_deposits |
++---------+-----------+-----------+--------------+
+| CHK     |      1414 | 231230948 |      9025.67 |
+| SAV     |      1111 | 227948102 |      3600.00 |
+| SAV     |      1111 | 184167702 |      1500.00 |
+| CD      |      2221 | 184167713 |      1500.00 |
+| SAV     |      8881 | 238226737 |     10500.00 |
+| SAV     |      1111 | 215201502 |     18000.00 |
+| SAV     |      3331 | 233755101 |      1500.00 |
+| CD      |      4441 | 239961844 |      1500.00 |
+| SAV     |      5551 | 236345948 |      6500.00 |
+| SBL     |      6661 | 238267721 |     50000.00 |
+| SBL     |      1111 | 227948102 |     50000.00 |
+| CHK     |      1212 | 233755991 |      1057.75 |
+| SBL     |      1616 | 236959804 |     50000.00 |
+| SAV     |      1212 | 236799948 |       500.00 |
+| CD      |      5551 | 236912342 |      3000.00 |
+| CHK     |      5551 | 236345948 |      2258.02 |
+| CHK     |      9991 | 236670948 |      1057.75 |
+| MM      |      9991 | 233247642 |      2212.50 |
+| CHK     |      1717 | 238267332 |     11856.49 |
+| SAV     |      1717 | 239961224 |       767.77 |
+| CHK     |      1717 | 239961224 |      2237.97 |
+| CD      |      1717 | 238267332 |     10000.00 |
+| CD      |      1313 | 238234737 |      5000.00 |
+| CHK     |      1313 | 238234737 |      3487.19 |
+| SAV     |      1414 | 239911144 |       387.99 |
+| MM      |      7771 | 236123642 |      9345.55 |
+| SAV     |      8881 | 239877844 |      1500.00 |
+| BUS     |      1515 | 238345737 |      9345.55 |
+| CHK     |      1515 | 238345737 |     42310.07 |
+| SBL     |      1515 | 238345737 |     50000.00 |
+| SAV     |      1515 | 239978944 |       767.77 |
+| CHK     |      1515 | 239978944 |     68575.12 |
+| BUS     |      1515 | 239978944 |         0.00 |
+| CHK     |      1313 | 234999456 |      5500.00 |
++---------+-----------+-----------+--------------+
+34 rows in set (0.00 sec)
+
+/*******************************************************************************************************************************************************************************
+Question 11: 
+Display the number of accounts opened after December 31, 2000 and before January 1, 2016.D
+Vincy's notes: YEAR(created) BETWEEN 2001 AND 2015
+********************************************************************************************************************************************************************************/
+SELECT
+	YEAR(created) AS year,
+    	count(account_id) AS num_account
+FROM accounts
+WHERE created > "2000-12-31"
+AND created < "2016-01-01"
+GROUP BY YEAR(created);
+
++------+----------+
+| year | how_many |
++------+----------+
+| 2015 |       20 |
+| 2006 |        3 |
+| 2014 |       13 |
++------+----------+
+
+/*******************************************************************************************************************************************************************************
+Question 12: 
+Display the number of accounts held by each client. Display the client ID and the number of
+accounts for each client. Include only clients  at least two accounts open.
+********************************************************************************************************************************************************************************/
+SELECT
+	client_id,
+    	count(account_id) AS num_account
+FROM accounts
+GROUP BY client_id
+HAVING count(account_id) >= 2;
+
++-----------+-------------+
+| client_id | num_account |
++-----------+-------------+
+|      1346 |           2 |
+|      1651 |           3 |
+|      2347 |           2 |
+|      2630 |           2 |
+|      3567 |           2 |
+|      4345 |           2 |
+|      4349 |           4 |
+|      8778 |           2 |
+|      9372 |           3 |
+|     93411 |           3 |
++-----------+-------------+
+10 rows in set (0.00 sec)
+
+/*******************************************************************************************************************************************************************************
+Question 13: 
+Display the employee last name who is first in an alphabetical list in the EMPLOYEE table along
+with the last name who is last in that alphabetical list.
+********************************************************************************************************************************************************************************/
+SELECT
+	MIN(last_name) AS "first last name",
+    	MAX(last_name) AS "last last name"
+FROM employee;
+
++-----------------+----------------+
+| first last name | last last name |
++-----------------+----------------+
+| Abbott          | Ziegler        |
++-----------------+----------------+
