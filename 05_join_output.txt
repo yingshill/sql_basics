@@ -1,0 +1,709 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2639
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\csgray\c0;}
+\margl1440\margr1440\vieww14780\viewh18780\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 \CocoaLigature0 \'93\'94\'94\
+Yingshi Liu\
+Assignment05\
+10/31/2022\
+\'93\'94\'94\
+\
+/*******************************************************************************************************************************************************************************\
+Question 1 :\
+For all accounts opened on May 23, 2015, write a SQL statement that displays the account ID, created date of the account, and client ID.\
+*******************************************************************************************************************************************************************************/\
+SELECT\
+  account_id,\
+  created,\
+  client_id\
+FROM\
+  accounts\
+WHERE\
+  created = '2015-05-23'\
+--------------\
+\
++------------+------------+-----------+\
+| account_id | created    | client_id |\
++------------+------------+-----------+\
+|  244476237 | 2015-05-23 |      4349 |\
+|  244477695 | 2015-05-23 |      4797 |\
++------------+------------+-----------+\
+2 rows in set (0.01 sec)\
+\
+--------------\
+/*******************************************************************************************************************************************************************************\
+Question 2 :\
+For all accounts, write a SQL statement that lists the account ID, created date, type ID, account name, and category ID for each type that\
+make up the account. Order the rows by category ID and then by account ID.\
+*******************************************************************************************************************************************************************************/\
+SELECT\
+  accts.account_id,\
+  accts.created,\
+  accts.type_id,\
+  acct_type.account_name,\
+  acct_type.category_id\
+FROM\
+  accounts accts\
+  INNER JOIN account_type acct_type\
+  	ON accts.type_id = acct_type.type_id\
+ORDER BY\
+  acct_type.category_id,\
+  accts.account_id\
+--------------\
+\
++------------+------------+---------+-------------------------+-------------+\
+| account_id | created    | type_id | account_name            | category_id |\
++------------+------------+---------+-------------------------+-------------+\
+|   24454848 | 2016-07-30 | CHK     | checking account        | Account     |\
+|  233344102 | 2015-08-30 | SAV     | savings account         | Account     |\
+|  233355103 | 2015-07-30 | SAV     | savings account         | Account     |\
+|  233355234 | 2006-03-30 | CD      | certificate of deposit  | Account     |\
+|  233357979 | 2016-07-30 | SAV     | savings account         | Account     |\
+|  233358765 | 2015-09-28 | SAV     | savings account         | Account     |\
+|  233777234 | 2015-03-30 | SAV     | savings account         | Account     |\
+|  233778884 | 2015-03-30 | CD      | certificate of deposit  | Account     |\
+|  239898103 | 2016-07-30 | SAV     | savings account         | Account     |\
+|  244454636 | 2015-01-15 | CHK     | checking account        | Account     |\
+|  244456093 | 2015-01-15 | SAV     | savings account         | Account     |\
+|  244457125 | 2014-08-30 | CD      | certificate of deposit  | Account     |\
+|  244457867 | 2006-03-12 | CHK     | checking account        | Account     |\
+|  244459245 | 2017-11-23 | CHK     | checking account        | Account     |\
+|  244459330 | 2014-12-15 | MM      | money market account    | Account     |\
+|  244462213 | 2015-09-12 | CHK     | checking account        | Account     |\
+|  244463194 | 2015-01-15 | SAV     | savings account         | Account     |\
+|  244463358 | 2014-01-27 | CHK     | checking account        | Account     |\
+|  244466770 | 2015-08-24 | CHK     | checking account        | Account     |\
+|  244468276 | 2014-12-28 | CD      | certificate of deposit  | Account     |\
+|  244472540 | 2014-01-12 | CD      | certificate of deposit  | Account     |\
+|  244476237 | 2015-05-23 | CHK     | checking account        | Account     |\
+|  244477695 | 2015-05-23 | SAV     | savings account         | Account     |\
+|  244482380 | 2014-07-30 | CHK     | checking account        | Account     |\
+|  244482964 | 2014-10-28 | MM      | money market account    | Account     |\
+|  244484103 | 2014-06-30 | SAV     | savings account         | Account     |\
+|  244488575 | 2006-07-30 | CHK     | checking account        | Account     |\
+|  244490593 | 2015-03-12 | CHK     | checking account        | Account     |\
+|  244490646 | 2015-01-15 | SAV     | savings account         | Account     |\
+|  244522777 | 2014-09-30 | CHK     | checking account        | Account     |\
+|  244555103 | 2015-06-30 | CHK     | checking account        | Account     |\
+|  244555432 | 2014-06-30 | CHK     | checking account        | Account     |\
+|  244566666 | 2015-06-25 | CHK     | checking account        | Account     |\
+|  244777103 | 2015-09-30 | CHK     | checking account        | Account     |\
+|  241155451 | 2015-12-23 | SBL     | small business loan     | Loan        |\
+|  243355451 | 2015-03-12 | SBL     | small business loan     | Loan        |\
+|  244455451 | 2015-02-22 | SBL     | small business loan     | Loan        |\
+|  244487802 | 2014-03-22 | BUS     | business line of credit | Loan        |\
+|  244490451 | 2014-02-22 | SBL     | small business loan     | Loan        |\
+|  244524021 | 2014-10-01 | BUS     | business line of credit | Loan        |\
++------------+------------+---------+-------------------------+-------------+\
+40 rows in set (0.00 sec)\
+\
+--------------\
+/*******************************************************************************************************************************************************************************\
+Question 3 :\
+Display all transactions by Reya Swanson in her checking account. Display the transaction ID, transaction type, transaction date, and the amount.\
+*******************************************************************************************************************************************************************************/\
+SELECT\
+  accts.trans_id,\
+  accts.trans_type,\
+  accts.trans_date,\
+  accts.amount\
+FROM\
+  account_trans trans\
+  INNER JOIN accounts accts\
+  	ON trans.account_id = accts.account_id\
+  INNER JOIN individual_client client\
+  	ON accts.client_id = client.client_id\
+WHERE\
+  client.first_name = 'Reya'\
+  AND client.last_name = 'Swanson'\
+--------------\
+\
+ERROR 1054 (42S22): Unknown column 'accts.trans_id' in 'field list'\
+--------------\
+/*******************************************************************************************************************************************************************************\
+Question 4 :\
+Display all account names along with account IDs. (Use the type_id column in the accounts table to link to the ACCOUNT_TYPE table).\
+Include all accounts, even if no accounts have been opened for that type.\
+*******************************************************************************************************************************************************************************/\
+SELECT\
+  acct_type.type_id,\
+  accts.account_id,\
+  accts.client_id,\
+  accts.avail_balance,\
+  acct_type.account_name\
+FROM\
+  account_type acct_type\
+  LEFT JOIN accounts accts\
+  ON acct_type.type_id = accts.type_id\
+--------------\
+\
++---------+------------+-----------+---------------+-------------------------+\
+| type_id | account_id | client_id | avail_balance | account_name            |\
++---------+------------+-----------+---------------+-------------------------+\
+| AUT     |       NULL |      NULL |          NULL | auto loan               |\
+| BUS     |  244487802 |      2630 |       9345.55 | business line of credit |\
+| BUS     |  244524021 |      2630 |          0.00 | business line of credit |\
+| CD      |  233355234 |      1651 |       1500.00 | certificate of deposit  |\
+| CD      |  233778884 |      2343 |       1500.00 | certificate of deposit  |\
+| CD      |  244457125 |      1514 |       3000.00 | certificate of deposit  |\
+| CD      |  244468276 |     93411 |      10000.00 | certificate of deposit  |\
+| CD      |  244472540 |      3348 |       5000.00 | certificate of deposit  |\
+| CHK     |   24454848 |      4349 |       8900.00 | checking account        |\
+| CHK     |  244454636 |      4345 |       1057.75 | checking account        |\
+| CHK     |  244457867 |      2347 |       2258.02 | checking account        |\
+| CHK     |  244459245 |      6539 |       1057.75 | checking account        |\
+| CHK     |  244462213 |     93411 |        534.12 | checking account        |\
+| CHK     |  244463358 |      9372 |       2237.97 | checking account        |\
+| CHK     |  244466770 |      9372 |        122.37 | checking account        |\
+| CHK     |  244476237 |      4349 |       3487.19 | checking account        |\
+| CHK     |  244482380 |      7612 |        125.67 | checking account        |\
+| CHK     |  244488575 |      1346 |      38552.05 | checking account        |\
+| CHK     |  244490593 |      2469 |       2258.02 | checking account        |\
+| CHK     |  244522777 |      3344 |      23575.12 | checking account        |\
+| CHK     |  244555103 |      3567 |       1500.00 | checking account        |\
+| CHK     |  244555432 |     93411 |      11200.00 | checking account        |\
+| CHK     |  244566666 |      4349 |       5500.00 | checking account        |\
+| CHK     |  244777103 |      3567 |      45000.00 | checking account        |\
+| MM      |  244459330 |      7348 |       2212.50 | money market account    |\
+| MM      |  244482964 |      8778 |       9345.55 | money market account    |\
+| MRT     |       NULL |      NULL |          NULL | home mortgage           |\
+| SAV     |  233344102 |      1651 |       3600.00 | savings account         |\
+| SAV     |  233355103 |      1651 |       1500.00 | savings account         |\
+| SAV     |  233357979 |      4349 |      10500.00 | savings account         |\
+| SAV     |  233358765 |      6347 |      18000.00 | savings account         |\
+| SAV     |  233777234 |      1888 |       1500.00 | savings account         |\
+| SAV     |  239898103 |      2347 |       6500.00 | savings account         |\
+| SAV     |  244456093 |      4345 |        500.00 | savings account         |\
+| SAV     |  244463194 |      9372 |        767.77 | savings account         |\
+| SAV     |  244477695 |      4797 |        387.99 | savings account         |\
+| SAV     |  244484103 |      8778 |       1500.00 | savings account         |\
+| SAV     |  244490646 |      3231 |        767.77 | savings account         |\
+| SBL     |  241155451 |      4696 |      50000.00 | small business loan     |\
+| SBL     |  243355451 |      8789 |      50000.00 | small business loan     |\
+| SBL     |  244455451 |      6043 |      50000.00 | small business loan     |\
+| SBL     |  244490451 |      1346 |      50000.00 | small business loan     |\
++---------+------------+-----------+---------------+-------------------------+\
+42 rows in set (0.00 sec)\
+\
+--------------\
+/*******************************************************************************************************************************************************************************\
+Question 5 :\
+Display all accounts opened by experienced tellers who were hired before January 1, 2007 and currently assigned to the Chicago branch.\
+Display account ID, client ID, created date, and type ID.\
+*******************************************************************************************************************************************************************************/\
+SELECT\
+  accts.account_id,\
+  accts.client_id,\
+  accts.created,\
+  accts.type_id\
+FROM\
+  accounts accts\
+  INNER JOIN employee emp\
+  	ON accts.open_emp_id = emp.emp_id\
+  INNER JOIN branch\
+  	ON accts.branch_id = branch.branch_id\
+WHERE\
+  emp.start_date < '2007-01-01'\
+  AND branch.branch_name = 'Chicago Branch'\
+--------------\
+\
++------------+-----------+------------+---------+\
+| account_id | client_id | created    | type_id |\
++------------+-----------+------------+---------+\
+|  244454636 |      4345 | 2015-01-15 | CHK     |\
++------------+-----------+------------+---------+\
+1 row in set (0.01 sec)\
+\
+--------------\
+/*******************************************************************************************************************************************************************************\
+Question 6 :\
+Display the account ID, federal tax number, first name and last name for all non-business accounts.\
+*******************************************************************************************************************************************************************************/\
+SELECT\
+  accts.account_id,\
+  clients.fed_id,\
+  ind_client.first_name,\
+  ind_client.last_name\
+FROM\
+  accounts accts\
+  INNER JOIN clients\
+  	ON accts.client_id = clients.client_id\
+  INNER JOIN individual_client ind_client\
+  	ON clients.client_id = ind_client.client_id\
+--------------\
+\
++------------+-------------+------------+-----------+\
+| account_id | fed_id      | first_name | last_name |\
++------------+-------------+------------+-----------+\
+|  244488575 | 111-55-5555 | Giulia     | Spencer   |\
+|  244490451 | 111-55-5555 | Giulia     | Spencer   |\
+|  244457125 | 222-66-5555 | Smith      | Nolan     |\
+|  233344102 | 555-55-6666 | Joe        | Evansr    |\
+|  233355103 | 555-55-6666 | Joe        | Evansr    |\
+|  233355234 | 555-55-6666 | Joe        | Evansr    |\
+|  233777234 | 111-11-1111 | Nolan      | Corbett   |\
+|  233778884 | 222-22-2222 | Eric       | Barrow    |\
+|  239898103 | 222-66-6666 | Margaret   | Young     |\
+|  244457867 | 222-66-6666 | Margaret   | Young     |\
+|  244490593 | 111-55-2222 | Kyan       | Rubio     |\
+|  244490646 | 333-33-9999 | Cory       | Goodwin   |\
+|  244522777 | 333-33-3333 | Jason      | Evansr    |\
+|  244472540 | 333-77-7777 | George     | Major     |\
+|  244454636 | 444-44-4444 | Arnold     | Cross     |\
+|  244456093 | 444-44-4444 | Arnold     | Cross     |\
+|   24454848 | 222-88-8888 | Reya       | Swanson   |\
+|  233357979 | 222-88-8888 | Reya       | Swanson   |\
+|  244476237 | 222-88-8888 | Reya       | Swanson   |\
+|  244566666 | 222-88-8888 | Reya       | Swanson   |\
+|  241155451 | 111-11-2222 | Casey      | Makhi     |\
+|  244477695 | 333-77-6666 | Jason      | Chen      |\
+|  244455451 | 444-44-2222 | Danny      | Fleming   |\
+|  233358765 | 666-66-6666 | Cory       | Field     |\
+|  244459245 | 777-77-3333 | Jan        | Vincent   |\
+|  244459330 | 777-77-7777 | Dani       | Leonard   |\
+|  244482380 | 222-88-7777 | Billy      | Harmon    |\
+|  244482964 | 222-99-8888 | Richard    | Toby      |\
+|  244484103 | 222-99-8888 | Richard    | Toby      |\
+|  243355451 | 888-88-5555 | Maryam     | Blake     |\
+|  244463194 | 999-99-4444 | Izabelle   | Rollins   |\
+|  244463358 | 999-99-4444 | Izabelle   | Rollins   |\
+|  244466770 | 999-99-4444 | Izabelle   | Rollins   |\
+|  244462213 | 999-99-9999 | Richard    | Gentry    |\
+|  244468276 | 999-99-9999 | Richard    | Gentry    |\
+|  244555432 | 999-99-9999 | Richard    | Gentry    |\
++------------+-------------+------------+-----------+\
+36 rows in set (0.00 sec)\
+\
+--------------\
+/*******************************************************************************************************************************************************************************\
+Question 7 :\
+Display each employee along with every checking account they helped open. Also, display their employee ID and branch name where\
+these accounts were opened.\
+*******************************************************************************************************************************************************************************/\
+SELECT\
+	a.account_id,\
+    e.emp_id,\
+    b.branch_name AS acc_branch,\
+    b.branch_name AS emp_branch\
+    \
+FROM employee e \
+INNER JOIN accounts a\
+ON e.emp_id = a.open_emp_id\
+INNER JOIN branch b\
+ON a.branch_id = b.branch_id\
+WHERE a.type_id = "CHK";\
+--------------\
+\
++------------+-----------+-----------------+-----------------+\
+| account_id | emp_id    | acc_branch      | emp_branch      |\
++------------+-----------+-----------------+-----------------+\
+|   24454848 | 231230948 | Jackson Branch  | Jackson Branch  |\
+|  244454636 | 233755991 | Chicago Branch  | Chicago Branch  |\
+|  244457867 | 236345948 | New York Branch | New York Branch |\
+|  244459245 | 236670948 | Market Branch   | Market Branch   |\
+|  244462213 | 238267332 | Madison Branch  | Madison Branch  |\
+|  244463358 | 239961224 | Madison Branch  | Madison Branch  |\
+|  244466770 | 238267332 | Madison Branch  | Madison Branch  |\
+|  244476237 | 238234737 | Michigan Branch | Michigan Branch |\
+|  244482380 | 231230948 | Jackson Branch  | Jackson Branch  |\
+|  244488575 | 238345737 | Chestnut Branch | Chestnut Branch |\
+|  244490593 | 238345737 | Chestnut Branch | Chestnut Branch |\
+|  244522777 | 239978944 | Chestnut Branch | Chestnut Branch |\
+|  244555103 | 238345737 | Chestnut Branch | Chestnut Branch |\
+|  244555432 | 238267332 | Madison Branch  | Madison Branch  |\
+|  244566666 | 234999456 | Michigan Branch | Michigan Branch |\
+|  244777103 | 239978944 | Chestnut Branch | Chestnut Branch |\
++------------+-----------+-----------------+-----------------+\
+16 rows in set (0.01 sec)\
+\
+\
+--------------\
+/*******************************************************************************************************************************************************************************\
+Question 8 :\
+Use the union all operator to generate a full set of client data from the INDIVIDUAL_CLIENT and BUSINESS_CLIENT tables.\
+*******************************************************************************************************************************************************************************/\
+SELECT\
+  client_id,\
+  last_name AS last_name_or_business_name\
+FROM\
+  individual_client\
+\
+UNION ALL\
+\
+SELECT\
+  client_id,\
+  bus_name AS last_name_or_business_name\
+FROM\
+  business_client\
+--------------\
+\
++-----------+----------------------------+\
+| client_id | last_name_or_business_name |\
++-----------+----------------------------+\
+|      1346 | Spencer                    |\
+|      1514 | Nolan                      |\
+|      1651 | Evansr                     |\
+|      1888 | Corbett                    |\
+|      2343 | Barrow                     |\
+|      2347 | Young                      |\
+|      2469 | Rubio                      |\
+|      3231 | Goodwin                    |\
+|      3344 | Evansr                     |\
+|      3348 | Major                      |\
+|      4345 | Cross                      |\
+|      4349 | Swanson                    |\
+|      4696 | Makhi                      |\
+|      4797 | Chen                       |\
+|      5346 | Howell                     |\
+|      6043 | Fleming                    |\
+|      6347 | Field                      |\
+|      6387 | Cross                      |\
+|      6539 | Vincent                    |\
+|      7348 | Leonard                    |\
+|      7612 | Harmon                     |\
+|      7855 | Aldo                       |\
+|      8349 | Howell                     |\
+|      8778 | Toby                       |\
+|      8789 | Blake                      |\
+|      9372 | Rollins                    |\
+|     53411 | Adele                      |\
+|     93411 | Gentry                     |\
+|      1562 | Primary Engineering g      |\
+|      1635 | Trusted Transport          |\
+|      2563 | Northeast Cooling Inc.     |\
+|      2630 | Mega Computers             |\
+|      2703 | Software Warehouse         |\
+|      3221 | Engineering Design Co      |\
+|      3562 | Supreme Engineering        |\
+|      3563 | Computer Buy Inc.          |\
+|      3564 | Super Auto Body            |\
+|      3566 | Recover Auto Body          |\
+|      3567 | Compass Mortgage.          |\
+|      4565 | AAA Insurance Inc.         |\
+|      5274 | One Stop Shop Computers    |\
+|      5615 | Safe  Insurance Inc.       |\
+|      8182 | Platinum Engineering       |\
+|      8289 | Safety Systems             |\
++-----------+----------------------------+\
+44 rows in set (0.00 sec)\
+\
+--------------\
+/*******************************************************************************************************************************************************************************\
+Question 9 :\
+Display the available balance from each account belonging to a client named George Major.\
+*******************************************************************************************************************************************************************************/\
+SELECT\
+  accts.avail_balance\
+FROM\
+  accounts accts\
+  INNER JOIN individual_client ind_client\
+  	ON accts.client_id = ind_client.client_id\
+WHERE\
+  ind_client.first_name = 'George'\
+  AND ind_client.last_name = 'Major'\
+--------------\
+\
++---------------+\
+| avail_balance |\
++---------------+\
+|       5000.00 |\
++---------------+\
+1 row in set (0.00 sec)\
+\
+--------------\
+/*******************************************************************************************************************************************************************************\
+Question 10 :\
+Display all accounts along with either a) the first name and last name of individual clients OR b) the business name of business clients.\
+*******************************************************************************************************************************************************************************/\
+SELECT\
+  accts.account_id,\
+  accts.type_id,\
+  CONCAT(ind_client.first_name, ' ', ind_client.last_name) AS person_name,\
+  bus_client.bus_name AS business_name\
+FROM\
+  accounts accts\
+  LEFT JOIN individual_client ind_client\
+  	ON accts.client_id = ind_client.client_id\
+  LEFT JOIN business_client bus_client\
+  	ON accts.client_id = bus_client.client_id\
+--------------\
+\
++------------+---------+------------------+-------------------+\
+| account_id | type_id | person_name      | business_name     |\
++------------+---------+------------------+-------------------+\
+|   24454848 | CHK     | Reya Swanson     | NULL              |\
+|  233344102 | SAV     | Joe Evansr       | NULL              |\
+|  233355103 | SAV     | Joe Evansr       | NULL              |\
+|  233355234 | CD      | Joe Evansr       | NULL              |\
+|  233357979 | SAV     | Reya Swanson     | NULL              |\
+|  233358765 | SAV     | Cory Field       | NULL              |\
+|  233777234 | SAV     | Nolan Corbett    | NULL              |\
+|  233778884 | CD      | Eric Barrow      | NULL              |\
+|  239898103 | SAV     | Margaret Young   | NULL              |\
+|  241155451 | SBL     | Casey Makhi      | NULL              |\
+|  243355451 | SBL     | Maryam Blake     | NULL              |\
+|  244454636 | CHK     | Arnold Cross     | NULL              |\
+|  244455451 | SBL     | Danny Fleming    | NULL              |\
+|  244456093 | SAV     | Arnold Cross     | NULL              |\
+|  244457125 | CD      | Smith Nolan      | NULL              |\
+|  244457867 | CHK     | Margaret Young   | NULL              |\
+|  244459245 | CHK     | Jan  Vincent     | NULL              |\
+|  244459330 | MM      | Dani Leonard     | NULL              |\
+|  244462213 | CHK     | Richard Gentry   | NULL              |\
+|  244463194 | SAV     | Izabelle Rollins | NULL              |\
+|  244463358 | CHK     | Izabelle Rollins | NULL              |\
+|  244466770 | CHK     | Izabelle Rollins | NULL              |\
+|  244468276 | CD      | Richard Gentry   | NULL              |\
+|  244472540 | CD      | George Major     | NULL              |\
+|  244476237 | CHK     | Reya Swanson     | NULL              |\
+|  244477695 | SAV     | Jason Chen       | NULL              |\
+|  244482380 | CHK     | Billy  Harmon    | NULL              |\
+|  244482964 | MM      | Richard Toby     | NULL              |\
+|  244484103 | SAV     | Richard Toby     | NULL              |\
+|  244487802 | BUS     | NULL             | Mega Computers    |\
+|  244488575 | CHK     | Giulia Spencer   | NULL              |\
+|  244490451 | SBL     | Giulia Spencer   | NULL              |\
+|  244490593 | CHK     | Kyan Rubio       | NULL              |\
+|  244490646 | SAV     | Cory Goodwin     | NULL              |\
+|  244522777 | CHK     | Jason Evansr     | NULL              |\
+|  244524021 | BUS     | NULL             | Mega Computers    |\
+|  244555103 | CHK     | NULL             | Compass Mortgage. |\
+|  244555432 | CHK     | Richard Gentry   | NULL              |\
+|  244566666 | CHK     | Reya Swanson     | NULL              |\
+|  244777103 | CHK     | NULL             | Compass Mortgage. |\
++------------+---------+------------------+-------------------+\
+40 rows in set (0.00 sec)\
+\
+--------------\
+/*******************************************************************************************************************************************************************************\
+Question 11 :\
+Display a list of all employees and, if applicable, their manager.\
+*******************************************************************************************************************************************************************************/\
+SELECT\
+  emp.first_name,\
+  emp.last_name,\
+  mgr.first_name AS mgr_first_name,\
+  mgr.last_name AS mgr_last\
+FROM\
+  employee emp\
+  LEFT JOIN employee mgr\
+  	ON emp.manager_id = mgr.emp_id\
+--------------\
+\
++------------+-----------+----------------+-----------+\
+| first_name | last_name | mgr_first_name | mgr_last  |\
++------------+-----------+----------------+-----------+\
+| Susan      | Barker    | Michael        | Smith     |\
+| Helen      | Fleming   | Susan          | Hawthorne |\
+| Allen      | Kevin     | Kenneth        | Martin    |\
+| Robert     | Tyler     | Michael        | Smith     |\
+| Pirkko     | Koskitalo | Paula          | Parente   |\
+| Gregory    | Webb      | NULL           | NULL      |\
+| Chris      | Tucker    | Helen          | Fleming   |\
+| Cynthia    | Ward      | Allen          | Kevin     |\
+| Emil       | Kline     | Ted            | Rooney    |\
+| Edison     | Herbert   | NULL           | NULL      |\
+| Varun      | Sanchez   | Kaisha         | Talley    |\
+| Livia      | Hall      | Micheal        | Couch     |\
+| Maxim      | Benitez   | NULL           | NULL      |\
+| Filip      | Gates     | Elizabeth      | Brown     |\
+| Samuel     | Ellis     | NULL           | NULL      |\
+| Diego      | Roel      | Elizabeth      | Brown     |\
+| Patricio   | Simpson   | NULL           | NULL      |\
+| Diego      | Roel      | Elizabeth      | Brown     |\
+| Susan      | Hawthorne | Robert         | Tyler     |\
+| Kenneth    | Martin    | NULL           | NULL      |\
+| Fran       | Rovelli   | John           | Steel     |\
+| Thomas     | Hardy     | NULL           | NULL      |\
+| Maria      | Anders    | Antonio        | Morenol   |\
+| Micheal    | Couch     | NULL           | NULL      |\
+| Randy      | Clarke    | Gene           | Irving    |\
+| Simon      | Crowther  | NULL           | NULL      |\
+| Faizan     | Murphy    | NULL           | NULL      |\
+| Daniel     | Tonini    | NULL           | NULL      |\
+| Allen      | Amin      | Chace          | Spence    |\
+| Samah      | Rasmussen | Lianne         | Wrightn   |\
+| Patricio   | Simpson   | NULL           | NULL      |\
+| Sufyan     | Stevenson | Alexande       | Kelly     |\
+| Adil       | Fischer   | NULL           | NULL      |\
+| Avneet     | Andersen  | Caspian        | Wells     |\
+| Steve      | Monaghan  | NULL           | NULL      |\
+| Michael    | Smith     | NULL           | NULL      |\
+| Matti      | Karttunen | NULL           | NULL      |\
+| Terry      | Jones     | Allen          | Kevin     |\
+| Sarah      | Parker    | Helen          | Fleming   |\
+| Alexander  | Peter     | Susan          | Barker    |\
+| Jane       | Grossman  | Helen          | Fleming   |\
+| Marion     | Blake     | Allen          | Kevin     |\
+| Ellen      | Abel      | Alexander      | Peter     |\
+| Paula      | Roberts   | Kenneth        | Martin    |\
+| Thomas     | Ziegler   | Paula          | Roberts   |\
+| Shelly     | Cannon    | Tommie         | Dougherty |\
+| Ted        | Rooney    | Edison         | Herbert   |\
+| Tommie     | Dougherty | Emil           | Kline     |\
+| Samantha   | Jameson   | Paula          | Roberts   |\
+| Lianne     | Wrightn   | Steve          | Monaghan  |\
+| Paula      | Wilson    | Angel          | Ibsen     |\
+| Angel      | Ibsen     | Pirkko         | Koskitalo |\
+| Caspian    | Wells     | Gregory        | Webb      |\
+| Christina  | Berglund  | Antonio        | Morenol   |\
+| Alexie     | Berglund  | Livia          | Hall      |\
+| Zackary    | Fuller    | Randy          | Clarke    |\
+| John       | Steel     | Daniel         | Tonini    |\
+| Antonio    | Morenol   | Thomas         | Hardy     |\
+| Elizabeth  | Brown     | Patricio       | Simpson   |\
+| Gene       | Irving    | Simon          | Crowther  |\
+| James      | Shelton   | Patricio       | Simpson   |\
+| Chace      | Spence    | Faizan         | Murphy    |\
+| Elizabeth  | Brown     | Patricio       | Simpson   |\
+| Kaisha     | Talley    | Samuel         | Ellis     |\
+| Alexande   | Kelly     | Adil           | Fischer   |\
+| Korey      | Abbott    | Eilish         | Reid      |\
+| Vladimir   | Escobar   | Eilish         | Reid      |\
+| Joel       | Franks    | Tommie         | Dougherty |\
+| Jed        | Ramsey    | Samah          | Rasmussen |\
+| Hanna      | Ahmed     | Alexie         | Berglund  |\
+| Clay       | May       | Avneet         | Andersen  |\
+| Jadon      | Mullen    | Sufyan         | Stevenson |\
+| Janete     | Limeira   | Angel          | Ibsen     |\
+| Hanna      | Moos      | Christina      | Berglund  |\
+| Yousaf     | Cobb      | Zackary        | Fuller    |\
+| Berti      | Shaw      | Alexie         | Berglund  |\
+| Victoria   | Ashworthn | Christina      | Berglund  |\
+| Peter      | Franken   | Diego          | Roel      |\
+| Zain       | Mays      | Diego          | Roel      |\
+| Oliver     | Paine     | Varun          | Sanchez   |\
+| Peter      | Franken   | Diego          | Roel      |\
+| iovanni    | Franken   | Diego          | Roel      |\
+| Kya        | Cruz      | Zackary        | Fuller    |\
+| Terry      | Bates     | Jed            | Ramsey    |\
+| Umer       | Whitmore  | Jadon          | Mullen    |\
+| Kai        | Smart     | Peter          | Franken   |\
+| Zayne      | Bennett   | Oliver         | Paine     |\
+| Carine     | FSchmitt  | Peter          | Franken   |\
+| Carine     | FSchmitt  | Peter          | Franken   |\
+| Catherine  | Dewey     | iovanni        | Franken   |\
+| Aamir      | Head      | Clay           | May       |\
+| Paula      | Parente   | Matti          | Karttunen |\
+| Wesley     | Rahman    | Jed            | Ramsey    |\
+| Georgie    | Sanchez   | Jadon          | Mullen    |\
+| Sonny      | Ford      | Peter          | Franken   |\
+| Robert     | Penn      | Oliver         | Paine     |\
+| Yoshi      | Latimer   | Peter          | Franken   |\
+| Yoshi      | Latimer   | Peter          | Franken   |\
+| Patricia   | Cramer    | iovanni        | Franken   |\
+| Toby       | Oliver    | Clay           | May       |\
+| Eilish     | Reid      | Antonio        | Morenol   |\
+| Eren       | Battle    | Micheal        | Couch     |\
+| John       | Gooding   | Susan          | Hawthorne |\
+| John       | Smith     | Susan          | Hawthorne |\
++------------+-----------+----------------+-----------+\
+104 rows in set (0.00 sec)\
+\
+--------------\
+/*******************************************************************************************************************************************************************************\
+Question 12 :\
+Display the account ID, client last name, federal ID, and account names. Display the first 10 rows in the result set.\
+*******************************************************************************************************************************************************************************/\
+SELECT\
+  accts.account_id,\
+  ind_client.last_name,\
+  clients.fed_id,\
+  acct_type.account_name\
+FROM\
+  accounts accts\
+  INNER JOIN individual_client ind_client\
+  	ON accts.client_id = ind_client.client_id\
+  INNER JOIN clients\
+  	ON accts.client_id = clients.client_id\
+  INNER JOIN account_type acct_type\
+  	ON accts.type_id = acct_type.type_id\
+LIMIT\
+  10\
+--------------\
+\
++------------+-----------+-------------+------------------------+\
+| account_id | last_name | fed_id      | account_name           |\
++------------+-----------+-------------+------------------------+\
+|  233355234 | Evansr    | 555-55-6666 | certificate of deposit |\
+|  233778884 | Barrow    | 222-22-2222 | certificate of deposit |\
+|  244457125 | Nolan     | 222-66-5555 | certificate of deposit |\
+|  244468276 | Gentry    | 999-99-9999 | certificate of deposit |\
+|  244472540 | Major     | 333-77-7777 | certificate of deposit |\
+|   24454848 | Swanson   | 222-88-8888 | checking account       |\
+|  244454636 | Cross     | 444-44-4444 | checking account       |\
+|  244457867 | Young     | 222-66-6666 | checking account       |\
+|  244459245 | Vincent   | 777-77-3333 | checking account       |\
+|  244462213 | Gentry    | 999-99-9999 | checking account       |\
++------------+-----------+-------------+------------------------+\
+10 rows in set (0.00 sec)\
+\
+--------------\
+/*******************************************************************************************************************************************************************************\
+Question 13 :\
+For all accounts, write a SQL statement that lists the account ID, created date, type ID, account name, and category ID for each type that\
+make up the account. Order the rows by category ID and then by account ID.\
+*******************************************************************************************************************************************************************************/\
+SELECT\
+  accts.account_id,\
+  accts.created,\
+  accts.type_id,\
+  acct_type.account_name,\
+  acct_type.category_id\
+FROM\
+  accounts accts\
+  INNER JOIN account_type acct_type\
+  	ON accts.type_id = acct_type.type_id\
+ORDER BY\
+  acct_type.category_id,\
+  accts.account_id\
+--------------\
+\
++------------+------------+---------+-------------------------+-------------+\
+| account_id | created    | type_id | account_name            | category_id |\
++------------+------------+---------+-------------------------+-------------+\
+|   24454848 | 2016-07-30 | CHK     | checking account        | Account     |\
+|  233344102 | 2015-08-30 | SAV     | savings account         | Account     |\
+|  233355103 | 2015-07-30 | SAV     | savings account         | Account     |\
+|  233355234 | 2006-03-30 | CD      | certificate of deposit  | Account     |\
+|  233357979 | 2016-07-30 | SAV     | savings account         | Account     |\
+|  233358765 | 2015-09-28 | SAV     | savings account         | Account     |\
+|  233777234 | 2015-03-30 | SAV     | savings account         | Account     |\
+|  233778884 | 2015-03-30 | CD      | certificate of deposit  | Account     |\
+|  239898103 | 2016-07-30 | SAV     | savings account         | Account     |\
+|  244454636 | 2015-01-15 | CHK     | checking account        | Account     |\
+|  244456093 | 2015-01-15 | SAV     | savings account         | Account     |\
+|  244457125 | 2014-08-30 | CD      | certificate of deposit  | Account     |\
+|  244457867 | 2006-03-12 | CHK     | checking account        | Account     |\
+|  244459245 | 2017-11-23 | CHK     | checking account        | Account     |\
+|  244459330 | 2014-12-15 | MM      | money market account    | Account     |\
+|  244462213 | 2015-09-12 | CHK     | checking account        | Account     |\
+|  244463194 | 2015-01-15 | SAV     | savings account         | Account     |\
+|  244463358 | 2014-01-27 | CHK     | checking account        | Account     |\
+|  244466770 | 2015-08-24 | CHK     | checking account        | Account     |\
+|  244468276 | 2014-12-28 | CD      | certificate of deposit  | Account     |\
+|  244472540 | 2014-01-12 | CD      | certificate of deposit  | Account     |\
+|  244476237 | 2015-05-23 | CHK     | checking account        | Account     |\
+|  244477695 | 2015-05-23 | SAV     | savings account         | Account     |\
+|  244482380 | 2014-07-30 | CHK     | checking account        | Account     |\
+|  244482964 | 2014-10-28 | MM      | money market account    | Account     |\
+|  244484103 | 2014-06-30 | SAV     | savings account         | Account     |\
+|  244488575 | 2006-07-30 | CHK     | checking account        | Account     |\
+|  244490593 | 2015-03-12 | CHK     | checking account        | Account     |\
+|  244490646 | 2015-01-15 | SAV     | savings account         | Account     |\
+|  244522777 | 2014-09-30 | CHK     | checking account        | Account     |\
+|  244555103 | 2015-06-30 | CHK     | checking account        | Account     |\
+|  244555432 | 2014-06-30 | CHK     | checking account        | Account     |\
+|  244566666 | 2015-06-25 | CHK     | checking account        | Account     |\
+|  244777103 | 2015-09-30 | CHK     | checking account        | Account     |\
+|  241155451 | 2015-12-23 | SBL     | small business loan     | Loan        |\
+|  243355451 | 2015-03-12 | SBL     | small business loan     | Loan        |\
+|  244455451 | 2015-02-22 | SBL     | small business loan     | Loan        |\
+|  244487802 | 2014-03-22 | BUS     | business line of credit | Loan        |\
+|  244490451 | 2014-02-22 | SBL     | small business loan     | Loan        |\
+|  244524021 | 2014-10-01 | BUS     | business line of credit | Loan        |\
++------------+------------+---------+-------------------------+-------------+\
+40 rows in set (0.00 sec)}
